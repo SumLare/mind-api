@@ -1,0 +1,6 @@
+foo:
+  first_name: Foo
+  last_name: Bar
+  email: foo@bar.com
+  api_token: <%= SecureRandom.hex %>
+  password_digest: <%= BCrypt::Password.create('password', cost: 4) %>
