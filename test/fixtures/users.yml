@@ -4,3 +4,4 @@ foo:
   email: foo@bar.com
   api_token: <%= SecureRandom.hex %>
   password_digest: <%= BCrypt::Password.create('password', cost: 4) %>
+  avatar: Avatar

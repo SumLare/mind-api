@@ -15,7 +15,9 @@ class API::UsersControllerTest < ActionDispatch::IntegrationTest
     @user.destroy
 
     assert_difference 'User.count' do
-      post api_user_url, params: { user: @user.attributes }
+      post api_user_url, params: {
+        user: @user.attributes.merge(password: SecureRandom.hex)
+      }
     end
 
     assert_response :created
