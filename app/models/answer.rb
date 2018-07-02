@@ -4,7 +4,5 @@ class Answer < ApplicationRecord
 
   has_many :comments, dependent: :destroy
 
-  validates :video, presence: true
-
   has_one_attached :video
 end
