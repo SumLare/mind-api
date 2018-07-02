@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_many :questions, dependent: :destroy
-  has_many :quuestions_for_respondent, class_name: 'Question', foreign_key: :respondent_id
+  has_many :questions_for_respondent, class_name: 'Question', foreign_key: :respondent_id
   has_many :answers, dependent: :destroy
   has_many :comments, dependent: :destroy
 

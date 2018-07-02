@@ -4,7 +4,6 @@ class API::AnswersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @answer = answers(:answer)
     @question = questions(:question)
-    @answer.video.attach(io: File.open(fixture_path + 'files/blank.jpg'), filename: 'blank.jpg')
   end
 
   test 'should create question' do
