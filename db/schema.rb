@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_01_194246) do
+ActiveRecord::Schema.define(version: 2018_07_02_061718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,17 @@ ActiveRecord::Schema.define(version: 2018_07_01_194246) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "questions", force: :cascade do |t|
+    t.string "content", null: false
+    t.integer "upvotes_count", default: 0
+    t.bigint "user_id"
+    t.bigint "respondent_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["respondent_id"], name: "index_questions_on_respondent_id"
+    t.index ["user_id"], name: "index_questions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "avatar"
     t.string "first_name"
@@ -48,4 +59,5 @@ ActiveRecord::Schema.define(version: 2018_07_01_194246) do
     t.index ["api_token"], name: "index_users_on_api_token"
   end
 
+  add_foreign_key "questions", "users"
 end

@@ -5,3 +5,10 @@ foo:
   api_token: <%= SecureRandom.hex %>
   password_digest: <%= BCrypt::Password.create('password', cost: 4) %>
   avatar: Avatar
+bar:
+  first_name: Baz
+  last_name: Bar
+  email: baz@bar.com
+  api_token: <%= SecureRandom.hex %>
+  password_digest: <%= BCrypt::Password.create('password', cost: 4) %>
+  avatar: Avatar
