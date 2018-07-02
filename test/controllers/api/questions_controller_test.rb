@@ -10,7 +10,6 @@ class API::QuestionsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-
   test 'should create question' do
     @question.destroy
 
