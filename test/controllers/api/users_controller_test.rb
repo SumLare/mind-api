@@ -3,6 +3,7 @@ require 'test_helper'
 class API::UsersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = users(:foo)
+    @user.avatar.attach(io: File.open(fixture_path + 'files/blank.jpg'), filename: 'blank.jpg')
   end
 
   test 'should get show' do
@@ -16,7 +17,10 @@ class API::UsersControllerTest < ActionDispatch::IntegrationTest
 
     assert_difference 'User.count' do
       post api_user_url, params: {
-        user: @user.attributes.merge(password: SecureRandom.hex)
+        user: @user.attributes.merge(
+          password: SecureRandom.hex,
+          avatar: fixture_file_upload(fixture_path + 'files/blank.jpg')
+        )
       }
     end
 
@@ -25,7 +29,8 @@ class API::UsersControllerTest < ActionDispatch::IntegrationTest
 
   test 'should update user' do
     new_name = 'Another name'
-    patch api_user_path(@user), params: { user: { first_name: new_name } }, headers: { 'HTTP_AUTHORIZATION' => api_token }
+    patch api_user_path(@user), params: { user: { first_name: new_name } },
+                                headers: { 'HTTP_AUTHORIZATION' => api_token }
     assert_response :ok
     assert_equal new_name, @user.reload.first_name
   end

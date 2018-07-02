@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :questions, dependent: :destroy
+  has_many :answers, dependent: :destroy
 
   validates :email, email: true, uniqueness: { case_sensitive: false }, allow_nil: true
 
