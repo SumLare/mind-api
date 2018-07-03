@@ -11,7 +11,6 @@ class API::UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-
   test 'should create user' do
     @user.destroy
 
