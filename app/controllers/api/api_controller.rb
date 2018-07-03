@@ -1,6 +1,8 @@
 class API::APIController < ApplicationController
+  include Pundit
   before_action :restrict_access!
   protect_from_forgery with: :null_session
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   protected
 
@@ -17,5 +19,11 @@ class API::APIController < ApplicationController
     authenticate_with_http_token do |token, _|
       @current_user ||= User.find_by_api_token(token)
     end
+  end
+
+  private
+
+  def user_not_authorized
+    head :forbidden
   end
 end
