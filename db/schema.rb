@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_03_073148) do
+ActiveRecord::Schema.define(version: 2018_07_03_094052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,16 @@ ActiveRecord::Schema.define(version: 2018_07_03_073148) do
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
+  create_table "reports", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "comment_id"
+    t.text "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_reports_on_comment_id"
+    t.index ["user_id"], name: "index_reports_on_user_id"
+  end
+
   create_table "upvotes", force: :cascade do |t|
     t.string "upvotable_type"
     t.bigint "upvotable_id"
@@ -96,5 +106,7 @@ ActiveRecord::Schema.define(version: 2018_07_03_073148) do
   add_foreign_key "comments", "answers"
   add_foreign_key "comments", "users"
   add_foreign_key "questions", "users"
+  add_foreign_key "reports", "comments"
+  add_foreign_key "reports", "users"
   add_foreign_key "upvotes", "users"
 end

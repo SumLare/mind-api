@@ -1,0 +1,4 @@
+report:
+  user: foo
+  comment: comment
+  content: Content
