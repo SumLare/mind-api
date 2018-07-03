@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_03_094052) do
+ActiveRecord::Schema.define(version: 2018_07_03_190618) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,15 @@ ActiveRecord::Schema.define(version: 2018_07_03_094052) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "followings", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "follower_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["follower_id"], name: "index_followings_on_follower_id"
+    t.index ["user_id"], name: "index_followings_on_user_id"
+  end
+
   create_table "questions", force: :cascade do |t|
     t.string "content", null: false
     t.integer "upvotes_count", default: 0
@@ -70,11 +79,12 @@ ActiveRecord::Schema.define(version: 2018_07_03_094052) do
 
   create_table "reports", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "comment_id"
     t.text "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["comment_id"], name: "index_reports_on_comment_id"
+    t.string "reportable_type"
+    t.bigint "reportable_id"
+    t.index ["reportable_type", "reportable_id"], name: "index_reports_on_reportable_type_and_reportable_id"
     t.index ["user_id"], name: "index_reports_on_user_id"
   end
 
@@ -105,8 +115,8 @@ ActiveRecord::Schema.define(version: 2018_07_03_094052) do
   add_foreign_key "answers", "users"
   add_foreign_key "comments", "answers"
   add_foreign_key "comments", "users"
+  add_foreign_key "followings", "users"
   add_foreign_key "questions", "users"
-  add_foreign_key "reports", "comments"
   add_foreign_key "reports", "users"
   add_foreign_key "upvotes", "users"
 end

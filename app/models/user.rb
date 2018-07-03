@@ -5,6 +5,8 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :upvotes, dependent: :destroy
   has_many :reports, dependent: :destroy
+  has_many :followers, class_name: 'Following', foreign_key: :user_id, dependent: :destroy
+  has_many :followings, class_name: 'Following', foreign_key: :follower_id, dependent: :destroy
 
   validates :email, email: true, uniqueness: { case_sensitive: false }, allow_nil: true
 
