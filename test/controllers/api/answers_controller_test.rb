@@ -6,11 +6,11 @@ class API::AnswersControllerTest < ActionDispatch::IntegrationTest
     @question = questions(:question)
   end
 
-  test 'should create question' do
+  test 'should create answer' do
     @answer.destroy
 
-    assert_difference 'Question.count' do
-      post api_question_answers_url(@question),
+    assert_difference 'Answer.count' do
+      post api_question_answer_url(@question),
           params: {
             answer: @answer.attributes.merge(
               video: fixture_file_upload(fixture_path + 'files/blank.jpg')

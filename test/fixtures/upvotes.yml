@@ -1,2 +1,3 @@
 upvote:
   upvotable: question(Question)
+  user: foo

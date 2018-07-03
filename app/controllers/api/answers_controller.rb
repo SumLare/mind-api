@@ -2,10 +2,10 @@ class API::AnswersController < API::APIController
   before_action :set_question, only: [:create]
 
   def create
-    @answer = @question.answers.build(answer_params.merge(user: current_user))
+    @answer = Answer.new(answer_params.merge(question: @question, user: current_user))
 
     if @answer.save
-      render :show, status: :created
+      render @answer, status: :created
     else
       render json: @answer.errors, status: 422
     end
