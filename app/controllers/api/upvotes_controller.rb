@@ -4,7 +4,7 @@ class API::UpvotesController < API::APIController
   def create
     @upvote = @upvotable.upvotes.build
 
-    if @upvote.valid?
+    if @upvote.save
       render :show, status: :created
     else
       render json: @upvote.errors, status: 422
