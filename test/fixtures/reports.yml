@@ -1,4 +1,4 @@
 report:
   user: foo
-  comment: comment
+  reportable: comment(Comment)
   content: Content

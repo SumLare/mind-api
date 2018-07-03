@@ -10,12 +10,12 @@ Rails.application.routes.draw do
 
     resources :answers, only: [] do
       resources :comments, only: [:create]
+      resources :reports, only: [:create]
     end
 
     resources :comments, only: [] do
       resources :upvotes, only: [:create]
+      resources :reports, only: [:create]
     end
-
-    resources :reports, only: [:create]
   end
 end

@@ -1,6 +1,8 @@
 class API::ReportsController < API::APIController
+  before_action :set_reportable, only: [:create]
+
   def create
-    @report = Report.new(report_params.merge(user: current_user))
+    @report = @reportable.reports.build(report_params.merge(user: current_user))
 
     if @report.save
       render json: @report, status: :created
@@ -12,6 +14,14 @@ class API::ReportsController < API::APIController
   private
 
   def report_params
-    params.require(:report).permit(:content, :comment_id)
+    params.require(:report).permit(:content)
+  end
+
+  def set_reportable
+    @reportable = if params[:answer_id].present?
+                    Answer.find(params[:answer_id])
+                  elsif params[:comment_id].present?
+                    Comment.find(params[:comment_id])
+                  end
   end
 end
