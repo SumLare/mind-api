@@ -2,7 +2,7 @@ class API::UpvotesController < API::APIController
   before_action :set_upvotable, only: [:create]
 
   def create
-    @upvote = @upvotable.upvotes.build
+    @upvote = @upvotable.upvotes.build(user: current_user)
 
     if @upvote.save
       render :show, status: :created

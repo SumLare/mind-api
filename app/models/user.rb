@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :questions_for_respondent, class_name: 'Question', foreign_key: :respondent_id
   has_many :answers, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :upvotes, dependent: :destroy
 
   validates :email, email: true, uniqueness: { case_sensitive: false }, allow_nil: true
 

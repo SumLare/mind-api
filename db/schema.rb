@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_02_220304) do
+ActiveRecord::Schema.define(version: 2018_07_03_073148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,7 +73,9 @@ ActiveRecord::Schema.define(version: 2018_07_02_220304) do
     t.bigint "upvotable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["upvotable_type", "upvotable_id"], name: "index_upvotes_on_upvotable_type_and_upvotable_id"
+    t.index ["user_id"], name: "index_upvotes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -94,4 +96,5 @@ ActiveRecord::Schema.define(version: 2018_07_02_220304) do
   add_foreign_key "comments", "answers"
   add_foreign_key "comments", "users"
   add_foreign_key "questions", "users"
+  add_foreign_key "upvotes", "users"
 end
