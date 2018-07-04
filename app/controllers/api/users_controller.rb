@@ -26,7 +26,7 @@ class API::UsersController < API::APIController
   private
 
   def set_user
-    @user = User.find(params[:id])
+    @user = params[:id].present? ? User.find(params[:id]) : current_user
   end
 
   def user_params
