@@ -6,4 +6,8 @@ class Question < ApplicationRecord
   has_many :upvotes, as: :upvotable
 
   validates :content, presence: true
+
+  def answered
+    answer.present?
+  end
 end
