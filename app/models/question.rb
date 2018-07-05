@@ -3,7 +3,7 @@ class Question < ApplicationRecord
   belongs_to :respondent, class_name: 'User'
 
   has_one :answer, dependent: :destroy
-  has_many :upvotes, as: :upvotable
+  has_many :upvotes, as: :upvotable, dependent: :destroy
 
   validates :content, presence: true
 

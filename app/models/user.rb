@@ -5,11 +5,12 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :upvotes, dependent: :destroy
   has_many :reports, dependent: :destroy
-
   has_many :follower_relationship, class_name: 'Following', foreign_key: :follower_id, dependent: :destroy
   has_many :followed_relationship, class_name: 'Following', foreign_key: :followed_id, dependent: :destroy
   has_many :following, through: :follower_relationship, source: :followed
   has_many :followers, through: :followed_relationship, source: :follower
+  has_many :views, dependent: :destroy
+  has_many :viewed_answers, through: :views, source: :user
 
   validates :email, email: true, uniqueness: { case_sensitive: false }, allow_nil: true
 

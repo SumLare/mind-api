@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_03_190618) do
+ActiveRecord::Schema.define(version: 2018_07_05_094201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,6 +112,15 @@ ActiveRecord::Schema.define(version: 2018_07_03_190618) do
     t.index ["api_token"], name: "index_users_on_api_token"
   end
 
+  create_table "views", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "answer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["answer_id"], name: "index_views_on_answer_id"
+    t.index ["user_id"], name: "index_views_on_user_id"
+  end
+
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
   add_foreign_key "comments", "answers"
@@ -119,4 +128,6 @@ ActiveRecord::Schema.define(version: 2018_07_03_190618) do
   add_foreign_key "questions", "users"
   add_foreign_key "reports", "users"
   add_foreign_key "upvotes", "users"
+  add_foreign_key "views", "answers"
+  add_foreign_key "views", "users"
 end
