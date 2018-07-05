@@ -1,5 +1,6 @@
 class API::UpvotesController < API::APIController
   before_action :set_upvotable, only: [:create]
+  before_action :set_upvote, only: [:destroy]
 
   def create
     @upvote = @upvotable.upvotes.build(user: current_user)
@@ -11,6 +12,12 @@ class API::UpvotesController < API::APIController
     end
   end
 
+  def destroy
+    authorize @upvote
+    @upvote.destroy
+    head :ok
+  end
+
   private
 
   def set_upvotable
@@ -19,5 +26,9 @@ class API::UpvotesController < API::APIController
                  elsif params[:comment_id].present?
                    Comment.find(params[:comment_id])
                  end
+  end
+
+  def set_upvote
+    @upvote = Upvote.find(params[:id])
   end
 end
