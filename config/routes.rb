@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :answers, only: [] do
       resources :comments, only: [:create]
       resources :reports, only: [:create]
+      resources :views, only: [:create]
     end
 
     resources :comments, only: [] do

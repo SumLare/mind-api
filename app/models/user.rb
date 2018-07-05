@@ -10,11 +10,15 @@ class User < ApplicationRecord
   has_many :following, through: :follower_relationship, source: :followed
   has_many :followers, through: :followed_relationship, source: :follower
   has_many :views, dependent: :destroy
-  has_many :viewed_answers, through: :views, source: :user
+  has_many :viewed_answers, through: :views, source: :answer
 
   validates :email, email: true, uniqueness: { case_sensitive: false }, allow_nil: true
 
   has_secure_token :api_token
   has_secure_password
   has_one_attached :avatar
+
+  def unviewed_answers_count(user)
+    user.answers.select { |a| !a.viewed?(self) }.count
+  end
 end
