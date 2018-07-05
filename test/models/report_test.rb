@@ -8,9 +8,4 @@ class ReportTest < ActiveSupport::TestCase
   test 'valid' do
     assert @report.valid?
   end
-
-  test 'invalid without content' do
-    @report.content = nil
-    assert @report.invalid?
-  end
 end
