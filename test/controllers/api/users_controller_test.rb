@@ -7,7 +7,7 @@ class API::UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get show' do
-    get api_user_path, headers: { 'HTTP_AUTHORIZATION' => api_token }
+    get api_user_path(@user), headers: { 'HTTP_AUTHORIZATION' => api_token }
     assert_response :success
   end
 
@@ -15,7 +15,7 @@ class API::UsersControllerTest < ActionDispatch::IntegrationTest
     @user.destroy
 
     assert_difference 'User.count' do
-      post api_user_url, params: {
+      post api_users_url, params: {
         user: @user.attributes.merge(
           password: SecureRandom.hex,
           avatar: fixture_file_upload(fixture_path + 'files/blank.jpg')
