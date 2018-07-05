@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :sessions, only: [:create]
     resources :upvotes, only: [:destroy]
     resources :comments, only: [:destroy]
+    resource :search, only: [:show]
 
     resources :questions, only: [:index, :create, :destroy] do
       resource :answer, only: [:create]
