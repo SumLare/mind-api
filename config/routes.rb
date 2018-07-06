@@ -22,5 +22,7 @@ Rails.application.routes.draw do
       resources :upvotes, only: [:create]
       resources :reports, only: [:create]
     end
+
+    resources :followings, only: [:index, :create, :destroy]
   end
 end

@@ -3,6 +3,7 @@ class Following < ApplicationRecord
   belongs_to :follower, class_name: 'User'
 
   validates :followed, :follower, presence: true
+  validates :follower, uniqueness: { scope: :followed }
   validate :not_self
 
   private
