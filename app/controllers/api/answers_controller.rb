@@ -2,7 +2,7 @@ class API::AnswersController < API::APIController
   before_action :set_question, only: [:create]
 
   def create
-    @answer = Answer.new(answer_params.merge(question: @question, user: current_user))
+    @answer = @question.build_answer(user: current_user, video: params[:video])
 
     if @answer.save
       render @answer, status: :created
@@ -12,10 +12,6 @@ class API::AnswersController < API::APIController
   end
 
   private
-
-  def answer_params
-    params.require(:answer).permit(:video)
-  end
 
   def set_question
     @question = Question.find(params[:question_id])
