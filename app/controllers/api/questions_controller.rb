@@ -18,7 +18,7 @@ class API::QuestionsController < API::APIController
   def destroy
     authorize @question
     @question.destroy
-    head :ok
+    head :no_content
   end
 
   private

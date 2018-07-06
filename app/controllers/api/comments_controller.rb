@@ -15,7 +15,7 @@ class API::CommentsController < API::APIController
   def destroy
     authorize @comment
     @comment.destroy
-    head :ok
+    head :no_content
   end
 
   private

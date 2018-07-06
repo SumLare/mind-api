@@ -15,7 +15,7 @@ class API::UpvotesController < API::APIController
   def destroy
     authorize @upvote
     @upvote.destroy
-    head :ok
+    head :no_content
   end
 
   private
