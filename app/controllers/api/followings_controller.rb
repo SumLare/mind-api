@@ -16,7 +16,7 @@ class API::FollowingsController < API::APIController
   end
 
   def destroy
-    current_user.follower_relationship.find_by(followed: @followed).destroy
+    @following.destroy
     head :no_content
   end
 
@@ -27,6 +27,7 @@ class API::FollowingsController < API::APIController
   end
 
   def set_following
-    @followed = current_user.following.find(params[:id])
+    followed = current_user.following.find(params[:id])
+    @following = current_user.follower_relationship.find_by(followed: followed)
   end
 end
