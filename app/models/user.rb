@@ -18,6 +18,10 @@ class User < ApplicationRecord
   has_secure_password
   has_one_attached :avatar
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   def unviewed_answers_count(user)
     user.answers.select { |a| !a.viewed?(self) }.count
   end
