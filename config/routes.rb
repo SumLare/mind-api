@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :admins, path: 'admin'
+
+  devise_scope :admin do
+    get '/admin', to: 'devise/sessions#new'
+  end
+
   namespace :api do
     resources :users, only: [:show, :create, :update]
     resource :user, only: [:show, :update]

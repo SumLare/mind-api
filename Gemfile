@@ -34,6 +34,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'email_validator', '~> 1.6.0'
 gem 'pundit', '~> 1.1.0'
 gem 'houston', '~> 2.2'
+gem 'devise', '~> 4.4'
+gem 'devise-bootstrap-views', '~> 1.0.0.alpha1'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
