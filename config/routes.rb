@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :api do
     resources :users, only: [:show, :create, :update]
-    resource :user, only: [:show]
+    resource :user, only: [:show, :update]
     resources :sessions, only: [:create]
     resources :upvotes, only: [:destroy]
     resources :comments, only: [:destroy]
