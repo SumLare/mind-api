@@ -14,7 +14,7 @@ class API::ReportsController < API::APIController
   private
 
   def report_params
-    params.require(:report).permit(:content)
+    params.require(:report).permit(:content, :category)
   end
 
   def set_reportable
