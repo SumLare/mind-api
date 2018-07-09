@@ -1,6 +1,11 @@
 class API::CommentsController < API::APIController
-  before_action :set_answer, only: [:create]
+  before_action :set_answer, only: [:index, :create]
   before_action :set_comment, only: [:destroy]
+  skip_before_action :restrict_access!, only: [:index]
+
+  def index
+    @comments = @answer.comments
+  end
 
   def create
     @comment = @answer.comments.build(comment_params.merge(user: current_user))

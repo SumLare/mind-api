@@ -13,13 +13,13 @@ Rails.application.routes.draw do
     resources :comments, only: [:destroy]
     resource :search, only: [:show]
 
-    resources :questions, only: [:index, :create, :destroy] do
+    resources :questions, only: [:create, :destroy] do
       resource :answer, only: [:create]
       resources :upvotes, only: [:create]
     end
 
     resources :answers, only: [] do
-      resources :comments, only: [:create]
+      resources :comments, only: [:index, :create]
       resources :reports, only: [:create]
       resources :views, only: [:create]
     end
