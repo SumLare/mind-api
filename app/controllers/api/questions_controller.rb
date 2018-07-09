@@ -1,10 +1,6 @@
 class API::QuestionsController < API::APIController
   before_action :set_question, only: [:destroy]
 
-  def index
-    @questions = current_user.questions
-  end
-
   def create
     @question = Question.new(question_params.merge(user: current_user))
 
