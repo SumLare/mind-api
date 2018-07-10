@@ -2,7 +2,7 @@ class API::AnswersController < API::APIController
   before_action :set_question, only: [:create]
 
   def create
-    @answer = @question.build_answer(user: current_user, video: params[:video])
+    @answer = @question.build_answer(video: params[:video])
 
     if @answer.save
       render @answer, status: :created

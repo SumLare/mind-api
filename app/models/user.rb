@@ -3,7 +3,7 @@ class User < ApplicationRecord
 
   has_many :questions, dependent: :destroy
   has_many :questions_for_respondent, class_name: 'Question', foreign_key: :respondent_id
-  has_many :answers, dependent: :destroy
+  has_many :answers, through: :questions_for_respondent, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :upvotes, dependent: :destroy
   has_many :reports, dependent: :destroy
@@ -14,7 +14,8 @@ class User < ApplicationRecord
   has_many :views, dependent: :destroy
   has_many :viewed_answers, through: :views, source: :answer
 
-  validates :email, email: true, uniqueness: { case_sensitive: false }, allow_nil: true
+  validates :email, email: true, uniqueness: { case_sensitive: false }
+  validates :bio, length: { maximum: 150 }, allow_nil: true
   validate :change_password
 
   has_secure_token :api_token
