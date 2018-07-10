@@ -28,7 +28,7 @@ class VerificationToken < ApplicationRecord
   private
 
   def enqueue_verification_token_dispatch
-    VerificationTokenJob.perform_later(self)
+    UserMailer.recover_password(email, code).deliver_later
   end
 
   def generate_code

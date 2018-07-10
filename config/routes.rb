@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :upvotes, only: [:destroy]
     resources :comments, only: [:destroy]
     resource :search, only: [:show]
+    resource :verification_token, only: [:create, :update]
 
     resources :questions, only: [:create, :destroy] do
       resource :answer, only: [:create]
