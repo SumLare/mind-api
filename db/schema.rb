@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_10_122521) do
+ActiveRecord::Schema.define(version: 2018_07_10_140127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,6 +128,15 @@ ActiveRecord::Schema.define(version: 2018_07_10_122521) do
     t.text "bio"
     t.string "device_token"
     t.index ["api_token"], name: "index_users_on_api_token"
+  end
+
+  create_table "verification_tokens", force: :cascade do |t|
+    t.string "code"
+    t.string "email"
+    t.string "token"
+    t.boolean "verified"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "views", force: :cascade do |t|
