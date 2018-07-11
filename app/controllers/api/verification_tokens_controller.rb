@@ -1,5 +1,6 @@
 class API::VerificationTokensController < API::APIController
   skip_before_action :restrict_access!
+  before_action :set_user, only: [:update]
 
   def create
     @verification_token = VerificationToken.new(verification_token_params)
@@ -12,13 +13,9 @@ class API::VerificationTokensController < API::APIController
   end
 
   def update
-    @verification_token = VerificationToken.find_by!(
-      token: update_verification_token_params[:token]
-    )
-
     if @verification_token.verify(update_verification_token_params[:code])
-      @verification_token.user.update(password: update_verification_token_params[:password])
-      render json: { api_token: @verification_token.user.try(:api_token) }
+      @user.update_column(:password, update_verification_token_params[:password])
+      render 'api/users/show', status: :ok
     else
       head :forbidden
     end
@@ -32,5 +29,12 @@ class API::VerificationTokensController < API::APIController
 
   def update_verification_token_params
     params.require(:verification_token).permit(:token, :code, :password)
+  end
+
+  def set_user
+    @verification_token = VerificationToken.find_by!(
+      token: update_verification_token_params[:token]
+    )
+    @user = @verification_token.user
   end
 end
