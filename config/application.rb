@@ -19,5 +19,7 @@ module Mind
       g.helper = false
       g.assets = false
     end
+
+    config.active_record.schema_format = :sql
   end
 end

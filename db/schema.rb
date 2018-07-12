@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_10_140127) do
+ActiveRecord::Schema.define(version: 2018_07_12_061736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -127,7 +127,7 @@ ActiveRecord::Schema.define(version: 2018_07_10_140127) do
     t.datetime "updated_at", null: false
     t.text "bio"
     t.string "device_token"
-    t.index ["api_token"], name: "index_users_on_api_token"
+    t.index ["api_token"], name: "index_users_on_api_token", unique: true
   end
 
   create_table "verification_tokens", force: :cascade do |t|
@@ -137,6 +137,7 @@ ActiveRecord::Schema.define(version: 2018_07_10_140127) do
     t.boolean "verified"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["token"], name: "index_verification_tokens_on_token", unique: true
   end
 
   create_table "views", force: :cascade do |t|
