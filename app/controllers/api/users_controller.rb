@@ -1,5 +1,6 @@
 class API::UsersController < API::APIController
   skip_before_action :restrict_access!, only: [:create, :show]
+  before_action :restrict_access!, only: [:show], unless: -> { params[:id].present? }
   before_action :set_user, only: [:show, :update]
 
   def show
