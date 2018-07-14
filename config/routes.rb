@@ -36,4 +36,8 @@ Rails.application.routes.draw do
 
     resources :followings, only: [:index, :create, :destroy]
   end
+
+  namespace :admin do
+    resources :reports, only: [:index]
+  end
 end

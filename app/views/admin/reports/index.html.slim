@@ -1,0 +1,14 @@
+= provide(:title, 'Reports')
+
+h1 Reports
+
+.table-responsive
+  table.table
+    thead
+      tr
+        th FIO
+        th Content
+        th Type
+        th Category
+    tbody
+      = render partial: 'admin/reports/report', collection: @reports
