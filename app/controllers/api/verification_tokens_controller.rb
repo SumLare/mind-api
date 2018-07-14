@@ -14,7 +14,7 @@ class API::VerificationTokensController < API::APIController
 
   def update
     if @verification_token.verify(update_verification_token_params[:code])
-      @user.update_column(:password, update_verification_token_params[:password])
+      @user.update(password: update_verification_token_params[:password])
       render 'api/users/show', status: :ok
     else
       head :forbidden

@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: 'support@mind.ru'
+  default from: 'hi@askmindapp.com'
 
   def recover_password(email, code)
     @code = code
