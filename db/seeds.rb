@@ -18,17 +18,17 @@ aaron = User.create!(
 )
 
 question = Question.create!(
-  content: 'Out believe has request not how comfort evident. Up delight cousins we feeling minutes. Genius?'
+  content: 'Out believe has request not how comfort evident. Up delight cousins we feeling minutes. Genius?',
   user: foo, respondent: elon
 )
 
 question2 = Question.create!(
-  content: 'She enabled invited exposed him another. Reasonably conviction solicitude me mr at discretion?'
+  content: 'She enabled invited exposed him another. Reasonably conviction solicitude me mr at discretion?',
   user: aaron, respondent: foo
 )
 
 question3 = Question.create!(
-  content: 'We diminution preference thoroughly if. Joy deal pain view much her time. Pronounce we attention?'
+  content: 'We diminution preference thoroughly if. Joy deal pain view much her time. Pronounce we attention?',
   user: elon, respondent: foo
 )
 
