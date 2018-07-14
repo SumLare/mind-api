@@ -449,9 +449,10 @@ ALTER SEQUENCE public.verification_tokens_id_seq OWNED BY public.verification_to
 CREATE TABLE public.views (
     id bigint NOT NULL,
     user_id bigint,
-    answer_id bigint,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    viewable_type character varying,
+    viewable_id bigint
 );
 
 
@@ -818,17 +819,17 @@ CREATE UNIQUE INDEX index_verification_tokens_on_token ON public.verification_to
 
 
 --
--- Name: index_views_on_answer_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_views_on_answer_id ON public.views USING btree (answer_id);
-
-
---
 -- Name: index_views_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_views_on_user_id ON public.views USING btree (user_id);
+
+
+--
+-- Name: index_views_on_viewable_type_and_viewable_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_views_on_viewable_type_and_viewable_id ON public.views USING btree (viewable_type, viewable_id);
 
 
 --
@@ -880,14 +881,6 @@ ALTER TABLE ONLY public.upvotes
 
 
 --
--- Name: views fk_rails_78ade82fbb; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.views
-    ADD CONSTRAINT fk_rails_78ade82fbb FOREIGN KEY (answer_id) REFERENCES public.answers(id);
-
-
---
 -- Name: reports fk_rails_c7699d537d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -922,6 +915,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180710122521'),
 ('20180710140127'),
 ('20180712061736'),
-('20180712114632');
+('20180712114632'),
+('20180713072210');
 
 

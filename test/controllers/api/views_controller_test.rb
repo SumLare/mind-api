@@ -3,7 +3,7 @@ require 'test_helper'
 class API::ViewsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @view = views(:view)
-    @answer = @view.answer
+    @answer = @view.viewable
   end
 
   test 'should create view' do

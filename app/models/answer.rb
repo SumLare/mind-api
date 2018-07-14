@@ -6,7 +6,7 @@ class Answer < ApplicationRecord
 
   has_many :comments, dependent: :destroy
   has_many :reports, as: :reportable, dependent: :destroy
-  has_many :views, dependent: :destroy
+  has_many :views, as: :viewable, dependent: :destroy
 
   after_create :notify
 

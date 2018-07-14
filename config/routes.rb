@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
-    resources :users, only: [:show, :create, :update]
+    resources :users, only: [:show, :create, :update] do
+      resources :views, only: [:create]
+    end
+
     resource :user, only: [:show, :update]
     resources :sessions, only: [:create]
     resources :upvotes, only: [:destroy]

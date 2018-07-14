@@ -1,11 +1,11 @@
 class API::ViewsController < API::APIController
-  before_action :set_answer, only: [:create]
+  before_action :set_viewable, only: [:create]
 
   def create
-    @view = @answer.views.build(user: current_user)
+    @view = @viewable.views.build(user: current_user)
 
     if @view.save
-      render @answer, status: :created
+      render @viewable, status: :created
     else
       render json: @view.errors, status: 422
     end
@@ -13,7 +13,11 @@ class API::ViewsController < API::APIController
 
   private
 
-  def set_answer
-    @answer = Answer.find(params[:answer_id])
+  def set_viewable
+    @viewable = if params[:answer_id].present?
+                   Answer.find(params[:answer_id])
+                 elsif params[:user_id].present?
+                   User.find(params[:user_id])
+                 end
   end
 end

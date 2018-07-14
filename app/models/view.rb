@@ -1,6 +1,7 @@
 class View < ApplicationRecord
   belongs_to :user
-  belongs_to :answer, counter_cache: true
+  belongs_to :viewable, polymorphic: true
 
-  validates :user, uniqueness: { scope: :answer }
+  validates :user, uniqueness: { scope: [:viewable_id, :viewable_type] },
+                   if: -> { viewable_type == 'Answer' }
 end
