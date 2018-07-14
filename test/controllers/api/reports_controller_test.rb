@@ -11,7 +11,7 @@ class API::ReportsControllerTest < ActionDispatch::IntegrationTest
 
     assert_difference 'Report.count' do
       post api_comment_reports_url(@comment), params: { report: @report.attributes },
-                            headers: { 'HTTP_AUTHORIZATION' => api_token }
+                                              headers: { 'HTTP_AUTHORIZATION' => api_token }
     end
 
     assert_response :created

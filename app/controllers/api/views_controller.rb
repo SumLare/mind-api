@@ -15,9 +15,9 @@ class API::ViewsController < API::APIController
 
   def set_viewable
     @viewable = if params[:answer_id].present?
-                   Answer.find(params[:answer_id])
-                 elsif params[:user_id].present?
-                   User.find(params[:user_id])
-                 end
+                  Answer.find(params[:answer_id])
+                elsif params[:user_id].present?
+                  User.find(params[:user_id])
+                end
   end
 end

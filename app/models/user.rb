@@ -28,16 +28,15 @@ class User < ApplicationRecord
   end
 
   def unviewed_answers_count(user)
-    user.answers.select { |a| !a.viewed?(self) }.count
+    user.answers.reject { |a| a.viewed?(self) }.count
   end
 
   private
 
   def change_password
     return if password_digest_was.nil? || !password_digest_changed?
+    return unless BCrypt::Password.new(password_digest_was) == current_password
 
-    unless BCrypt::Password.new(password_digest_was) == current_password
-      errors.add(:base, 'wrong current password')
-    end
+    errors.add(:base, 'wrong current password')
   end
 end

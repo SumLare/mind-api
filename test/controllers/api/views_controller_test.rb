@@ -11,7 +11,7 @@ class API::ViewsControllerTest < ActionDispatch::IntegrationTest
 
     assert_difference 'View.count' do
       post api_answer_views_url(@answer), params: { view: @view.attributes },
-                            headers: { 'HTTP_AUTHORIZATION' => api_token }
+                                          headers: { 'HTTP_AUTHORIZATION' => api_token }
     end
 
     assert_response :created

@@ -13,7 +13,7 @@ class API::FollowingsControllerTest < ActionDispatch::IntegrationTest
 
     assert_difference 'Following.count' do
       post api_followings_url, params: { following: @following.attributes },
-                            headers: { 'HTTP_AUTHORIZATION' => api_token }
+                               headers: { 'HTTP_AUTHORIZATION' => api_token }
     end
 
     assert_response :created

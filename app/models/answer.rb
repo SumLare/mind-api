@@ -2,7 +2,7 @@ class Answer < ApplicationRecord
   belongs_to :question
 
   delegate :respondent, to: :question
-  alias_method :user, :respondent
+  alias user respondent
 
   has_many :comments, dependent: :destroy
   has_many :reports, as: :reportable, dependent: :destroy

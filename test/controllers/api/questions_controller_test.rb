@@ -5,11 +5,6 @@ class API::QuestionsControllerTest < ActionDispatch::IntegrationTest
     @question = questions(:question)
   end
 
-  test 'should get index' do
-    get api_questions_path, headers: { 'HTTP_AUTHORIZATION' => api_token }
-    assert_response :success
-  end
-
   test 'should create question' do
     @question.destroy
 
