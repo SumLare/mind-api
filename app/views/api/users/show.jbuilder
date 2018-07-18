@@ -6,4 +6,10 @@ json.questions @user.questions_for_respondent do |question|
   json.user do
     json.partial! 'api/users/user', user: question.user
   end
+
+  if question.answer
+    json.answer do
+      json.partial! 'api/answers/answer', answer: question.answer
+    end
+  end
 end
