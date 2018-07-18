@@ -18,6 +18,10 @@ class Answer < ApplicationRecord
     user.viewed_answers.include?(self)
   end
 
+  def update_counter_cache
+    update_attribute(:views_count, views.count)
+  end
+
   private
 
   def notify

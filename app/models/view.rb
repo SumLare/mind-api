@@ -4,4 +4,7 @@ class View < ApplicationRecord
 
   validates :user, uniqueness: { scope: [:viewable_id, :viewable_type] },
                    if: -> { viewable_type == 'Answer' }
+
+  after_save -> { viewable.update_counter_cache }, if: -> { viewable_type == 'Answer' }
+  after_destroy -> { viewable.update_counter_cache }, if: -> { viewable_type == 'Answer' }
 end
