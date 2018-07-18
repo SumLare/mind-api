@@ -13,6 +13,8 @@ class Answer < ApplicationRecord
   has_one_attached :video
 
   def viewed?(user)
+    return unless user
+
     user.viewed_answers.include?(self)
   end
 

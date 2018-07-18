@@ -4,6 +4,7 @@ class API::PopularsController < API::APIController
                  .where('answers.created_at >= ?', 7.days.ago)
                  .order('answers.views_count desc')
                  .includes(:questions)
+                 .with_attached_avatar
                  .limit(10)
   end
 end
