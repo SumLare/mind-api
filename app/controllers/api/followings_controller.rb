@@ -2,7 +2,7 @@ class API::FollowingsController < API::APIController
   before_action :set_following, only: [:destroy]
 
   def index
-    @followings = current_user.following
+    @followings = current_user.following.with_attached_avatar
   end
 
   def create
