@@ -17,6 +17,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'email_validator', '~> 1.6.0'
 gem 'pundit', '~> 1.1.0'
 gem 'houston', '~> 2.2'
+gem 'kaminari'
 
 # Admin
 gem 'devise', '~> 4.4'
