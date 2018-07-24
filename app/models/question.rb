@@ -6,6 +6,7 @@ class Question < ApplicationRecord
 
   has_one :answer, dependent: :destroy
   has_many :upvotes, as: :upvotable, dependent: :destroy
+  has_many :users, through: :upvotes
 
   validates :content, presence: true, length: { maximum: MAX_CONTENT_LENGTH }
 
