@@ -21,6 +21,10 @@ class API::APIController < ApplicationController
     end
   end
 
+  def token_present?
+    request.headers['Authorization'].present?
+  end
+
   private
 
   def user_not_authorized
