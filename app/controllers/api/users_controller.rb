@@ -4,6 +4,7 @@ class API::UsersController < API::APIController
   before_action :set_user, only: [:show, :update]
 
   def show
+    @questions = @user.questions_for_respondent.page(params[:page]).per(5)
   end
 
   def create
