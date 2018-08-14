@@ -11,9 +11,9 @@ class User < ApplicationRecord
   has_many :followed_relationship, class_name: 'Following', foreign_key: :followed_id, dependent: :destroy
   has_many :following, through: :follower_relationship, source: :followed
   has_many :followers, through: :followed_relationship, source: :follower
-  has_many :views, as: :viewable, dependent: :destroy
+  has_many :views, dependent: :destroy
   has_many :viewed_answers, through: :views, source: :viewable, source_type: 'Answer'
-  has_many :profile_views, through: :views, source: :viewable, source_type: 'User'
+  has_many :viewed_profiles, through: :views, source: :viewable, source_type: 'User'
 
   validates :email, email: true, uniqueness: { case_sensitive: false }
   validates :bio, length: { maximum: 150 }, allow_nil: true
