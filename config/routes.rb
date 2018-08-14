@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
-    resources :users, only: [:show, :create, :update] do
+    resources :users, only: [:show, :create] do
       resources :views, only: [:create]
     end
 
