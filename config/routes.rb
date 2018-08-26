@@ -34,7 +34,11 @@ Rails.application.routes.draw do
       resources :reports, only: [:create]
     end
 
-    resources :followings, only: [:index, :create, :destroy]
+    resources :followings, only: [:index, :create, :destroy] do
+      collection do
+        resources :answers, only: [:index], controller: 'following_answers'
+      end
+    end
   end
 
   namespace :admin do
