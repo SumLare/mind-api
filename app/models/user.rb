@@ -27,11 +27,17 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
-  def unviewed_answers_count(user)
-    user.answers.reject { |a| a.viewed?(self) }.count
+  # user is person who looks at current object profile
+  def missed_answers_count(user)
+    answers.where('answers.created_at > ?', latest_profile_view(user))
+           .where.not(answers: { id: user.viewed_answers.ids }).count
   end
 
   private
+
+  def latest_profile_view(user)
+    user.views.where(viewable: self).last&.created_at
+  end
 
   def change_password
     return if password_digest_was.nil? || !password_digest_changed?
