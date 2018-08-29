@@ -17,13 +17,13 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'email_validator', '~> 1.6.0'
 gem 'pundit', '~> 1.1.0'
 gem 'houston', '~> 2.2'
-gem 'kaminari'
+gem 'kaminari', '~> 1.1.1'
 
 # Admin
 gem 'devise', '~> 4.4'
 gem 'devise-bootstrap-views', '~> 1.0.0.alpha1'
 gem 'bootstrap', '~> 4.0.0'
-gem 'slim-rails'
+gem 'slim-rails', '~> 3.1.3'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
@@ -40,5 +40,5 @@ group :development do
 end
 
 group :production do
-  gem 'aws-sdk-s3', require: false
+  gem 'aws-sdk-s3', '~> 1.17.0', require: false
 end
